@@ -3,4 +3,6 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+ENV['SOURCE_ANNOTATION_DIRECTORIES'] = 'spec,features'
+
 Rails.application.load_tasks
