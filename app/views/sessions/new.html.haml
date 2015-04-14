@@ -1,0 +1,14 @@
+#login_form
+  = form_tag do
+    %fieldset
+      %legend= t '.please_log_in'
+      %div
+        = label_tag :login
+        %br
+        = text_field_tag :login, params[:login]
+      %div
+        = label_tag :password
+        %br
+        = password_field_tag :password, params[:password]
+      %div
+        = submit_tag 'login'

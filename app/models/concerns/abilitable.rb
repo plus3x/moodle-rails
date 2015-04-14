@@ -14,7 +14,7 @@ module Abilitable
       @controller, @action = controller, action
     end
 
-    def self.can(controller, actions=:all)
+    def self.can(controller, actions = :all)
       RIGHTS[controller] = actions
     end
 
