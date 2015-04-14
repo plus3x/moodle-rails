@@ -30,3 +30,7 @@ Style/ExtraSpacing:
 Rails/Output:
   Exclude:
     - db/seeds.rb
+
+RSpec/FilePath:
+  Exclude:
+    - spec/routing/**/*
