@@ -1,0 +1,11 @@
+require: rubocop-rspec
+
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+    - db/seeds.rb
+
+Style/MethodCalledOnDoEndBlock:
+  Enabled: true
+  Exclude:
+    - spec/**/*

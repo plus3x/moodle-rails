@@ -25,6 +25,8 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'simplecov', require: false
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
 end
 
 group :production, :development do
@@ -38,4 +40,3 @@ group :production do
   gem 'pg'
   gem 'unicorn'
 end
-

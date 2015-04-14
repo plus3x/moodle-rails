@@ -1,0 +1,32 @@
+inherit_from: .rubocop_todo.yml
+
+require: rubocop-rspec
+
+AllCops:
+  RunRailsCops: true
+  Exclude:
+    - bin/**
+    - db/schema.rb
+    - db/migrate/*.rb
+
+Documentation:
+  Enabled: false
+
+Style/MissingElse:
+  EnforcedStyle: if
+
+Style/AutoResourceCleanup:
+  Enabled: true
+
+Style/CollectionMethods:
+  Enabled: true
+
+Style/SymbolArray:
+  Enabled: true
+
+Style/ExtraSpacing:
+  Enabled: true
+
+Rails/Output:
+  Exclude:
+    - db/seeds.rb
