@@ -35,6 +35,6 @@ end
 group :production do
   gem 'rails_12factor' # for heroku
   gem 'pg'
-  # gem 'unicorn'
+  gem 'unicorn'
 end
 
