@@ -4,6 +4,7 @@ ruby '2.2.1'
 gem 'rails', '~> 4.2'
 gem 'bcrypt'
 
+gem 'haml-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jbuilder', '~> 2.0'
