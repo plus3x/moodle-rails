@@ -1,10 +1,23 @@
-= form_tag '/login', class: 'form-signin' do
-  %h2.form-signin-heading= t '.please_log_in'
+.raw
+  .col-lg-6
+    = form_tag '/login', class: 'form-signin' do
+      %h2.form-signin-heading= t '.please_log_in'
 
-  = label_tag t(:login), nil, class: 'sr-only'
-  = text_field_tag :login, params[:login], class: 'form-control', placeholder: t(:login), required: true, autofocus: true
+      = label_tag t(:login), nil, class: 'sr-only'
+      = text_field_tag :login, params[:login], class: 'form-control', placeholder: t(:login), required: true, autofocus: true
 
-  = label_tag t(:password), nil, class: 'sr-only'
-  = password_field_tag :password, params[:password], class: 'form-control', placeholder: t(:password), required: true
+      = label_tag t(:password), nil, class: 'sr-only'
+      = password_field_tag :password, params[:password], class: 'form-control', placeholder: t(:password), required: true
 
-  = submit_tag t(:login), class: 'btn btn-lg btn-primary btn-block'
+      = submit_tag t(:login), class: 'btn btn-lg btn-primary btn-block'
+
+  .col-lg-6
+    %h2 Hello
+    %p You can try moodle copy
+    %br
+    %h4 Users:
+    %ul.list-group
+      %li.list-group-item admin / admin
+      %li.list-group-item manager / manager
+      %li.list-group-item teacher / teacher
+      %li.list-group-item student / student
