@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
 
   validates :login, :email, :role, presence: true
   validates :email, format: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/
+
+  def avatar_url
+    'avatar.jpg'
+  end
 end

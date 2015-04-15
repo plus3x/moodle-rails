@@ -1,14 +1,28 @@
 %nav.navbar.navbar-inverse
   .container-fluid
+
     .navbar-header
       = link_to 'Moodle-Rails', (signed_in? ? courses_path : login_path), class: 'navbar-brand'
-    #navbar.navbar-collapse.collapse
-      %ul.nav.navbar-nav
-        %li= link_to 'Dashboard', courses_path
-        %li.dropdown
-          %a.dropdown-toggle{ href: '#', 'data-toggle': 'dropdown', 'aria-expanded': false }
-            Courses
-            %span.caret
-          %ul.dropdown-menu
-            - Course.all.each do |course|
-              %li= link_to course.title, course
+
+    - if signed_in?
+      #navbar.navbar-collapse.collapse
+
+        %ul.nav.navbar-nav
+          %li= link_to 'Dashboard', courses_path
+          %li.dropdown
+            %a.dropdown-toggle{ href: '#', 'data-toggle': 'dropdown', 'aria-expanded': false }
+              Courses
+              %span.caret
+            %ul.dropdown-menu
+              - Course.all.each do |course|
+                %li= link_to course.title, course
+
+        %ul.nav.navbar-nav.navbar-right
+          %li.dropdown
+            %a.dropdown-toggle{ href: '#', 'data-toggle': 'dropdown', 'aria-expanded': false }
+              = current_user.login
+              &nbsp
+              = image_tag current_user.avatar_url, alt: 'avatar', class: 'img-circle', style: 'width: 40px; height: 40px; margin: -15px -15px -15px 0'
+            %ul.dropdown-menu
+              %li= link_to 'My profile', current_user
+              %li= link_to 'Logout', logout_path, method: :delete

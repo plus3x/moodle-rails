@@ -13,6 +13,7 @@
       .jumbotron
 
         - flash.each do |key, value|
-          = content_tag :p, value, id: key
+          %div{ class: "alert alert-#{key == 'notice' ? 'success' : 'danger'}" }
+            = value
 
         = yield
