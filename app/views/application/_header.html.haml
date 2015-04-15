@@ -1,4 +1,14 @@
-%nav.navbar.navbar-default
+%nav.navbar.navbar-inverse
   .container-fluid
     .navbar-header
-      = link_to 'Moodle-Rails', root_path, class: 'navbar-brand'
+      = link_to 'Moodle-Rails', (signed_in? ? courses_path : login_path), class: 'navbar-brand'
+    #navbar.navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        %li= link_to 'Dashboard', courses_path
+        %li.dropdown
+          %a.dropdown-toggle{ href: '#', 'data-toggle': 'dropdown', 'aria-expanded': false }
+            Courses
+            %span.caret
+          %ul.dropdown-menu
+            - Course.all.each do |course|
+              %li= link_to course.title, course
