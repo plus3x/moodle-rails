@@ -1,6 +1,6 @@
 class LearningUnitsController < ApplicationController
-  before_action :set_learning_unit, only: %i(show edit update destroy)
   before_action :set_course
+  before_action :set_learning_unit, only: %i(show edit update destroy)
 
   # GET /courses/1/learning_units
   # GET /courses/1/learning_units.json

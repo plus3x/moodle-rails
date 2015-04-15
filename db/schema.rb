@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415113711) do
+ActiveRecord::Schema.define(version: 20150415125256) do
+
+  create_table "activities", force: :cascade do |t|
+    t.string   "title",            null: false
+    t.integer  "learning_unit_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "activities", ["learning_unit_id"], name: "index_activities_on_learning_unit_id"
+  add_index "activities", ["title"], name: "index_activities_on_title"
 
   create_table "courses", force: :cascade do |t|
     t.string   "title",      null: false
@@ -40,8 +50,8 @@ ActiveRecord::Schema.define(version: 20150415113711) do
     t.datetime "updated_at",                        null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["login"], name: "index_users_on_login", unique: true
+  add_index "users", ["email"], name: "index_users_on_email"
+  add_index "users", ["login"], name: "index_users_on_login"
   add_index "users", ["role"], name: "index_users_on_role"
 
 end
