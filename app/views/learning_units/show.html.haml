@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @learning_unit.title
+%p
+  %b Course:
+  = @learning_unit.course
+
+= link_to 'Edit', edit_learning_unit_path(@learning_unit)
+\|
+= link_to 'Back', learning_units_path

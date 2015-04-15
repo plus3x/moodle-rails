@@ -17,4 +17,9 @@ FactoryGirl.define do
   factory :course do
     title { |n| "Course##{n}" }
   end
+
+  factory :learning_unit do
+    title { |n| "LearningUnit##{n}" }
+    course
+  end
 end

@@ -8,5 +8,8 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :courses
+
+  resources :courses do
+    resources :learning_units
+  end
 end

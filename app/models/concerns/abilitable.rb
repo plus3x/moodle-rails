@@ -37,6 +37,7 @@ module Abilitable
 
   class Teacher < Role
     can courses: %i(edit update)
+    can learning_units: :all
   end
 
   class Student < Role

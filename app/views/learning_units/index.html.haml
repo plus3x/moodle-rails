@@ -1,0 +1,23 @@
+%h1 Listing learning_units
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Course
+      %th
+      %th
+      %th
+
+  %tbody
+    - @learning_units.each do |learning_unit|
+      %tr
+        %td= learning_unit.title
+        %td= learning_unit.course
+        %td= link_to 'Show', learning_unit
+        %td= link_to 'Edit', edit_learning_unit_path(learning_unit)
+        %td= link_to 'Destroy', learning_unit, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Learning unit', new_learning_unit_path
