@@ -1,13 +1,11 @@
-= form_for @user do |f|
-  = f.error_messages
-  .field
-    = f.label :login
-    = f.text_field :login
-  .field
-    = f.label :password
-    = f.text_field :password
-  .field
-    = f.label :email
-    = f.text_field :email
-  .actions
-    = f.submit 'Save'
+= simple_form_for @user, class: 'form-horizontal' do |f|
+  = f.error_notification
+
+  .form-controlls
+    = f.input :login
+    = f.input :password
+    = f.input :email
+    = f.input :role, collection: User.roles, prompt: false
+
+  .form-actions
+    = f.button :submit
