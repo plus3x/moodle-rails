@@ -4,11 +4,11 @@ ruby '2.2.1'
 gem 'rails', '~> 4.2'
 gem 'bcrypt'
 
-gem 'dynamic_form'
 gem 'haml-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jbuilder', '~> 2.0'
+gem 'bootstrap-sass', '~> 3.3'
 
 group :test do
   gem 'factory_girl_rails'
@@ -17,8 +17,6 @@ end
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'byebug'
-  gem 'web-console', '~> 2.0'
   gem 'pry-rails'
   gem 'rspec-rails'
 end
