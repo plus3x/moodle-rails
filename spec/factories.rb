@@ -13,4 +13,8 @@ FactoryGirl.define do
     factory(:teacher) { role 'teacher' }
     factory(:student) { role 'student' }
   end
+
+  factory :course do
+    title { |n| "Course##{n}" }
+  end
 end

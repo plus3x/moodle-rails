@@ -32,9 +32,11 @@ module Abilitable
   class Manager < Role
     can sessions: :all
     can users: %i(edit update)
+    can courses: :all
   end
 
   class Teacher < Role
+    can courses: %i(edit update)
   end
 
   class Student < Role
