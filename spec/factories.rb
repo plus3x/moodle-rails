@@ -1,6 +1,7 @@
 FactoryGirl.define do
   sequence(:login, aliases: [:username]) { |n| "John##{n}" }
   sequence(:email) { |n| "john#{n}@mail.com" }
+  sequence(:description) { ('A'..'z').to_a.*(10).sample(255).join }
 
   factory :user do
     login
@@ -25,6 +26,7 @@ FactoryGirl.define do
 
   factory :activity do
     title { |n| "Activity##{n}" }
+    description
     learning_unit
   end
 end

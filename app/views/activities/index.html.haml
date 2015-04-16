@@ -4,7 +4,6 @@
   %thead
     %tr
       %th Title
-      %th Course
       %th Learning unit
       %th
       %th
@@ -14,7 +13,6 @@
     - @activities.each do |activity|
       %tr
         %td= activity.title
-        %td= activity.course
         %td= activity.learning_unit
         %td= link_to 'Show', activity
         %td= link_to 'Edit', edit_activity_path(activity)

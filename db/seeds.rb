@@ -8,10 +8,38 @@
 
 User.delete_all
 users = [
-  { role: 'student', login: 'student', email: 'student@mail.com', password: 'student' },
-  { role: 'teacher', login: 'teacher', email: 'teacher@mail.com', password: 'teacher' },
-  { role: 'manager', login: 'manager', email: 'manager@mail.com', password: 'manager' },
-  { role: 'admin', login: 'admin', email: 'admin@mail.com', password: 'admin' }
+  {
+    role: 'student',
+    login: 'student',
+    first_name: 'Max',
+    last_name: 'Student',
+    email: 'student@mail.com',
+    password: 'student'
+  },
+  {
+    role: 'teacher',
+    login: 'teacher',
+    first_name: 'Max',
+    last_name: 'Teacher',
+    email: 'teacher@mail.com',
+    password: 'teacher'
+  },
+  {
+    role: 'manager',
+    login: 'manager',
+    first_name: 'Max',
+    last_name: 'Manager',
+    email: 'manager@mail.com',
+    password: 'manager'
+  },
+  {
+    role: 'admin',
+    login: 'admin',
+    first_name: 'Max',
+    last_name: 'Admin',
+    email: 'admin@mail.com',
+    password: 'admin'
+  }
 ]
 puts 'Default users:'
 User.create!(users).each do |user|
@@ -38,9 +66,11 @@ end
 
 Activity.delete_all
 activities = [
-  { title: 'New activity', learning_unit: LearningUnit.first }
+  { title: 'New activity', description: '<p><strong>Description</strong> of activity</p>', learning_unit: LearningUnit.first }
 ]
 puts 'Default activities:'
 Activity.create!(activities).each do |activity|
   puts "  #{activity.id} - #{activity.title} on learning unit \"#{activity.learning_unit.title}\""
 end
+
+User.all.each { |u| u.courses << Course.first }

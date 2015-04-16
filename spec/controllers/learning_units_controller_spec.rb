@@ -19,7 +19,7 @@ describe LearningUnitsController do
     let(:learning_unit) { create :learning_unit, course: course }
 
     it 'assigns the requested learning_unit as @learning_unit' do
-      get :show, course_id: course, id: learning_unit.to_param
+      get :show, course_id: course, id: learning_unit
       expect(response).to render_template :show
       expect(assigns(:learning_unit)).to eq(learning_unit)
     end
@@ -37,7 +37,7 @@ describe LearningUnitsController do
     let(:learning_unit) { create :learning_unit, course: course }
 
     it 'assigns the requested learning_unit as @learning_unit' do
-      get :edit, course_id: course, id: learning_unit.to_param
+      get :edit, course_id: course, id: learning_unit
       expect(response).to render_template :edit
       expect(assigns(:learning_unit)).to eq(learning_unit)
     end
@@ -85,29 +85,29 @@ describe LearningUnitsController do
 
       it 'updates the requested learning_unit' do
         expect do
-          put :update, course_id: course, id: learning_unit.to_param, learning_unit: new_attributes
+          put :update, course_id: course, id: learning_unit, learning_unit: new_attributes
         end.to change { learning_unit.reload.title }.to new_attributes[:title]
       end
 
       it 'assigns the requested learning_unit as @learning_unit' do
-        put :update, course_id: course, id: learning_unit.to_param, learning_unit: valid_attributes
+        put :update, course_id: course, id: learning_unit, learning_unit: valid_attributes
         expect(assigns(:learning_unit)).to eq(learning_unit)
       end
 
       it 'redirects to the learning_unit' do
-        put :update, course_id: course, id: learning_unit.to_param, learning_unit: valid_attributes
+        put :update, course_id: course, id: learning_unit, learning_unit: valid_attributes
         expect(response).to redirect_to [course, learning_unit]
       end
     end
 
     describe 'with invalid params' do
       it 'assigns the learning_unit as @learning_unit' do
-        put :update, course_id: course, id: learning_unit.to_param, learning_unit: invalid_attributes
+        put :update, course_id: course, id: learning_unit, learning_unit: invalid_attributes
         expect(assigns(:learning_unit)).to eq(learning_unit)
       end
 
       it "re-renders the 'edit' template" do
-        put :update, course_id: course, id: learning_unit.to_param, learning_unit: invalid_attributes
+        put :update, course_id: course, id: learning_unit, learning_unit: invalid_attributes
         expect(response).to render_template :edit
       end
     end
@@ -117,13 +117,13 @@ describe LearningUnitsController do
     it 'destroys the requested learning_unit' do
       learning_unit = create(:learning_unit)
       expect do
-        delete :destroy, course_id: course, id: learning_unit.to_param
+        delete :destroy, course_id: course, id: learning_unit
       end.to change(LearningUnit, :count).by(-1)
     end
 
     it 'redirects to the learning_unit list' do
       learning_unit = create(:learning_unit)
-      delete :destroy, course_id: course, id: learning_unit.to_param
+      delete :destroy, course_id: course, id: learning_unit
       expect(response).to redirect_to course
     end
   end

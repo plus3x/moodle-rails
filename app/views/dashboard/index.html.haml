@@ -1,0 +1,21 @@
+.page-header
+  %h2 Courses
+
+.panel.panel-default
+
+  - @courses.each do |course|
+
+    .panel-heading
+      .panel-title= link_to course.title, course
+
+    .panel-body
+      .raw{ style: 'padding-top: 15px' }
+        %ul.col-sm-6.list-inline
+          %li Teachers:
+          - course.teachers.each do |user|
+            %li= image_tag current_user.avatar_url, alt: "#{user.login}(#{user.role})", class: 'img-circle', style: 'width: 40px; height: 40px; margin: -15px -15px -15px 0'
+        %ul.col-sm-6.list-inline
+          %li Students:
+          - course.students.each do |user|
+            %li= image_tag current_user.avatar_url, alt: "#{user.login}(#{user.role})", class: 'img-circle', style: 'width: 40px; height: 40px; margin: -15px -15px -15px 0'
+

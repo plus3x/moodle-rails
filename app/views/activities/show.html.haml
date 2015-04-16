@@ -1,15 +1,7 @@
-%p#notice= notice
+.page-header
+  %h2= @activity.title
 
-%p
-  %b Title:
-  = @activity.title
-%p
-  %b Course:
-  = @activity.course
-%p
-  %b Learning unit:
-  = @activity.learning_unit
+%p=raw @activity.description
 
-= link_to 'Edit', edit_activity_path(@activity)
-\|
-= link_to 'Back', activities_path
+- if current_user.can?(:activities, :edit)
+  = link_to 'Edit', [:edit, @activity.learning_unit.course, @activity.learning_unit, @activity]

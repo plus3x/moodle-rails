@@ -1,13 +1,11 @@
 describe CoursesController do
-  let(:manager) { create :manager }
-  before { login_as manager }
-
+  let(:manager) { create :manager, courses: [course] }
+  let(:course) { create :course }
   let(:valid_attributes) { { title: 'New course' } }
   let(:invalid_attributes) { { title: '' } }
+  before { login_as manager }
 
   describe 'GET index' do
-    let(:course) { create :course }
-
     it 'assigns all courses as @courses' do
       get :index
       expect(response).to render_template :index
@@ -16,10 +14,8 @@ describe CoursesController do
   end
 
   describe 'GET show' do
-    let(:course) { create :course }
-
     it 'assigns the requested course as @course' do
-      get :show, id: course.to_param
+      get :show, id: course
       expect(response).to render_template :show
       expect(assigns(:course)).to eq(course)
     end
@@ -34,10 +30,8 @@ describe CoursesController do
   end
 
   describe 'GET edit' do
-    let(:course) { create :course }
-
     it 'assigns the requested course as @course' do
-      get :edit, id: course.to_param
+      get :edit, id: course
       expect(response).to render_template :edit
       expect(assigns(:course)).to eq(course)
     end
@@ -78,36 +72,34 @@ describe CoursesController do
   end
 
   describe 'PUT update' do
-    let(:course) { create :course }
-
     describe 'with valid params' do
       let(:new_attributes) { { title: 'New course' } }
 
       it 'updates the requested course' do
         expect do
-          put :update, id: course.to_param, course: new_attributes
+          put :update, id: course, course: new_attributes
         end.to change { course.reload.title }.to new_attributes[:title]
       end
 
       it 'assigns the requested course as @course' do
-        put :update, id: course.to_param, course: valid_attributes
+        put :update, id: course, course: valid_attributes
         expect(assigns(:course)).to eq(course)
       end
 
       it 'redirects to the course' do
-        put :update, id: course.to_param, course: valid_attributes
+        put :update, id: course, course: valid_attributes
         expect(response).to redirect_to(course)
       end
     end
 
     describe 'with invalid params' do
       it 'assigns the course as @course' do
-        put :update, id: course.to_param, course: invalid_attributes
+        put :update, id: course, course: invalid_attributes
         expect(assigns(:course)).to eq(course)
       end
 
       it "re-renders the 'edit' template" do
-        put :update, id: course.to_param, course: invalid_attributes
+        put :update, id: course, course: invalid_attributes
         expect(response).to render_template :edit
       end
     end
@@ -117,13 +109,13 @@ describe CoursesController do
     it 'destroys the requested course' do
       course = create(:course)
       expect do
-        delete :destroy, id: course.to_param
+        delete :destroy, id: course
       end.to change(Course, :count).by(-1)
     end
 
     it 'redirects to the course list' do
       course = create(:course)
-      delete :destroy, id: course.to_param
+      delete :destroy, id: course
       expect(response).to redirect_to(courses_url)
     end
   end

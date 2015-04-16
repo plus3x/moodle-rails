@@ -32,7 +32,7 @@ describe SessionsController do
     it 'must remove session' do
       delete :destroy
       expect(session['user_id']).to be_nil
-      expect(response).to redirect_to root_path
+      expect(response).to redirect_to login_path
       expect(flash[:notice]).to eq 'Logged out'
     end
   end

@@ -1,9 +1,18 @@
-%p#notice= notice
+.page-header
+  %h2= @course.title
 
-%p
-  %b Title:
-  = @course.title
+.panel.panel-default
 
-= link_to 'Edit', edit_course_path(@course)
-\|
-= link_to 'Back', courses_path
+  - @course.learning_units.each do |learning_unit|
+
+    .panel-heading
+      .panel-title= learning_unit.title
+
+    .panel-body
+      %ul.list-group
+        - learning_unit.activities.each do |activity|
+          %li.list-group-item= link_to activity.title, [@course, learning_unit, activity]
+
+
+- if current_user.can?(:courses, :edit)
+  = link_to 'Edit', edit_course_path(@course)

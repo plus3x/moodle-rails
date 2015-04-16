@@ -1,8 +1,9 @@
-= simple_form_for @activity, class: 'form-horizontal' do |f|
+= simple_form_for [@activity.learning_unit.course, @activity.learning_unit, @activity], class: 'form-horizontal' do |f|
   = f.error_notification
 
   .field-controls
     = f.input :title
+    = f.input :description, as: :bootsy
 
   .form-actions
     = f.button :submit

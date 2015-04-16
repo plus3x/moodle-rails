@@ -6,6 +6,10 @@
     = f.input :password
     = f.input :email
     = f.input :role, collection: User.roles, prompt: false
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :city
+    = f.input :country
 
   .form-actions
     = f.button :submit

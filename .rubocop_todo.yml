@@ -9,3 +9,6 @@ Style/MethodCalledOnDoEndBlock:
   Enabled: true
   Exclude:
     - spec/**/*
+
+Rails/HasAndBelongsToMany:
+  Enabled: false

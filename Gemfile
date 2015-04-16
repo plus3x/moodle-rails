@@ -10,6 +10,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'simple_form'
+gem 'bootsy'
 
 group :test do
   gem 'factory_girl_rails'
@@ -40,4 +41,6 @@ group :production do
   gem 'rails_12factor' # for heroku
   gem 'pg'
   gem 'unicorn'
+  gem 'carrierwave'
+  gem 'fog', '1.23.0'
 end

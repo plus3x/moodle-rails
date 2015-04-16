@@ -1,6 +1,6 @@
 describe ActivitiesController do
   let(:teacher) { create :teacher }
-  let(:valid_attributes) { { title: 'New activity' } }
+  let(:valid_attributes) { { title: 'New activity', description: 'My description' } }
   let(:invalid_attributes) { { title: '' } }
   let(:course) { create :course }
   let(:learning_unit) { create :learning_unit, course: course }

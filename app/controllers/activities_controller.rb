@@ -78,6 +78,9 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:title).merge learning_unit_id: params[:learning_unit_id]
+    params
+      .require(:activity)
+      .permit(:title, :description, :bootsy_image_gallery_id)
+      .merge(learning_unit_id: params[:learning_unit_id])
   end
 end

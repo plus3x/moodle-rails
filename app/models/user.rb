@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include Abilitable
 
+  has_and_belongs_to_many :courses
+
   has_secure_password
 
   enum role: {
@@ -16,5 +18,9 @@ class User < ActiveRecord::Base
 
   def avatar_url
     'avatar.jpg'
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 end

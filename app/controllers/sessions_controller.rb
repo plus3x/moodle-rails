@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   # POST /login
   def create
     if sessions_is_authenticated?
-      redirect_to root_url, notice: 'Successful login'
+      redirect_to dashboard_url, notice: 'Successful login'
     else
       redirect_to login_url, alert: 'Invalid user/password combination'
     end
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   # DELETE /logout
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, notice: 'Logged out'
+    redirect_to login_url, notice: 'Logged out'
   end
 
   private
