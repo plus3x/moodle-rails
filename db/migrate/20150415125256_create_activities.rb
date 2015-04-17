@@ -4,6 +4,7 @@ class CreateActivities < ActiveRecord::Migration
       t.string :title, null: false, index: true
       t.belongs_to :learning_unit, index: true, foreign_key: true
       t.text :description, null: false
+      t.integer :max_grade
 
       t.timestamps null: false
     end

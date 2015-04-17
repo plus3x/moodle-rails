@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416005509) do
+ActiveRecord::Schema.define(version: 20150417102446) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "title",            null: false
     t.integer  "learning_unit_id"
     t.text     "description",      null: false
+    t.integer  "max_grade"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -27,15 +28,15 @@ ActiveRecord::Schema.define(version: 20150416005509) do
   create_table "bootsy_image_galleries", force: :cascade do |t|
     t.integer  "bootsy_resource_id"
     t.string   "bootsy_resource_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "bootsy_images", force: :cascade do |t|
     t.string   "image_file"
     t.integer  "image_gallery_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "courses", force: :cascade do |t|
@@ -63,6 +64,33 @@ ActiveRecord::Schema.define(version: 20150416005509) do
 
   add_index "learning_units", ["course_id"], name: "index_learning_units_on_course_id"
   add_index "learning_units", ["title"], name: "index_learning_units_on_title"
+
+  create_table "submissions", force: :cascade do |t|
+    t.integer  "files_id"
+    t.integer  "author_id"
+    t.integer  "activity_id"
+    t.string   "comment"
+    t.integer  "grade"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "submissions", ["activity_id"], name: "index_submissions_on_activity_id"
+  add_index "submissions", ["author_id"], name: "index_submissions_on_author_id"
+  add_index "submissions", ["files_id"], name: "index_submissions_on_files_id"
+
+  create_table "upload_files", force: :cascade do |t|
+    t.integer  "author_id"
+    t.integer  "activity_id"
+    t.integer  "submission_id"
+    t.string   "file"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "upload_files", ["activity_id"], name: "index_upload_files_on_activity_id"
+  add_index "upload_files", ["author_id"], name: "index_upload_files_on_author_id"
+  add_index "upload_files", ["submission_id"], name: "index_upload_files_on_submission_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "password_digest"

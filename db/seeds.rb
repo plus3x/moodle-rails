@@ -48,7 +48,8 @@ end
 
 Course.delete_all
 courses = [
-  { title: 'New course' }
+  { title: 'Course with week delimeter' },
+  { title: 'Blank Course' }
 ]
 puts 'Default courses:'
 Course.create!(courses).each do |course|
@@ -57,7 +58,9 @@ end
 
 LearningUnit.delete_all
 learning_units = [
-  { title: 'New learning unit', course: Course.first }
+  { title: 'Week 1', course: Course.first },
+  { title: 'Week 2', course: Course.first },
+  { title: 'Week 3', course: Course.first }
 ]
 puts 'Default learning units:'
 LearningUnit.create!(learning_units).each do |learning_unit|
@@ -65,12 +68,21 @@ LearningUnit.create!(learning_units).each do |learning_unit|
 end
 
 Activity.delete_all
+standard_description = '<p><strong>Description</strong> of activity</p>'
 activities = [
-  { title: 'New activity', description: '<p><strong>Description</strong> of activity</p>', learning_unit: LearningUnit.first }
+  { title: 'First assgnment', description: standard_description, learning_unit: LearningUnit.first },
+  { title: 'Need Submissions', description: standard_description, learning_unit: LearningUnit.first },
+  { title: 'Readme', description: standard_description, learning_unit: LearningUnit.first },
+  { title: 'File upload', description: standard_description, learning_unit: LearningUnit.second },
+  { title: 'Team assignment to read', description: standard_description, learning_unit: LearningUnit.second },
+  { title: 'Participant', description: standard_description, learning_unit: LearningUnit.second },
+  { title: 'With Discussion', description: standard_description, learning_unit: LearningUnit.third },
+  { title: 'QUIZ Assignment', description: standard_description, learning_unit: LearningUnit.third },
+  { title: 'Some task', description: standard_description, learning_unit: LearningUnit.third },
 ]
 puts 'Default activities:'
 Activity.create!(activities).each do |activity|
   puts "  #{activity.id} - #{activity.title} on learning unit \"#{activity.learning_unit.title}\""
 end
 
-User.all.each { |u| u.courses << Course.first }
+User.all.each { |u| u.courses << Course.all }
