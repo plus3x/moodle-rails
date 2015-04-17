@@ -55,12 +55,12 @@ Bootsy.setup do |config|
   #   'fog' to your Gemfile and create and configure your credentials in an
   #   initializer file, as described in Carrierwave's docs:
   #   https://github.com/carrierwaveuploader/carrierwave#using-amazon-s3
-  config.storage = Rails.env.production? ? :fog : :file
+  # config.storage = Rails.env.production? ? :fog : :file
   #
   #
   # Store directory (inside 'public') for storage = :file
   #   BE CAREFUL! Changing this may break previously uploaded file paths!
-  config.store_dir = 'uploads'
+  # config.store_dir = 'uploads'
   #
   #
   # Specify the controller to inherit from. Using ApplicationController
