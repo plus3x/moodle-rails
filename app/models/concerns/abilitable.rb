@@ -2,47 +2,63 @@ module Abilitable
   extend ActiveSupport::Concern
 
   def can?(controller, action)
-    ('Abilitable::' + role.classify).constantize.new(controller, action).can?
+    ('Abilitable::Role::' + role.classify).constantize.new(controller, action).can?
   end
 
   private
 
-  class Role
-    RIGHTS = {}
+  module Role
+    class Base
+      RIGHTS = {}
 
-    def initialize(controller, action)
-      @controller, @action = controller, action
+      def initialize(controller, action)
+        @controller, @action = controller, action
+      end
+
+      def self.can(opts)
+        controller, actions = opts.keys.first, opts.values.first
+        define_method("#{controller}_can?") do |action|
+          return true if actions == :all
+          actions.include? action.to_sym
+        end
+      end
+
+      def can?
+        return true if all_can?(:all)
+
+        send "#{@controller}_can?", @action
+      end
+
+      def method_missing(*)
+        false
+      end
     end
 
-    def self.can(controller, actions = :all)
-      RIGHTS[controller] = actions
+    class Admin < Base
+      can all: :all
     end
 
-    def can?
-      return true if RIGHTS[:all] == :all
-
-      RIGHTS[@controller] == :all || RIGHTS[@controller].include?(@action)
+    class Guest < Base
+      can sessions: %i(new create)
     end
-  end
 
-  class Admin < Role
-    can :all
-  end
+    class Student < Guest
+      can sessions: :all
+      can dashboard: %i(index)
+      can courses: %i(index show)
+      can learning_units: %i(index show)
+      can activities: :all
+    end
 
-  class Manager < Role
-    can sessions: :all
-    can users: %i(edit update)
-    can courses: :all
-  end
+    class Teacher < Student
+      can courses: %i(edit update)
+      can learning_units: :all
+      can activities: :all
+    end
 
-  class Teacher < Role
-    can courses: %i(edit update)
-    can learning_units: :all
-  end
-
-  class Student < Role
-  end
-
-  class Guest < Role
+    class Manager < Teacher
+      can users: %i(edit update)
+      can courses: :all
+    end
   end
 end
