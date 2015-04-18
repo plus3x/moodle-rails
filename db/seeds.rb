@@ -70,7 +70,7 @@ end
 Activity.delete_all
 standard_description = '<p><strong>Description</strong> of activity</p>'
 activities = [
-  { title: 'First assgnment', description: standard_description, learning_unit: LearningUnit.first },
+  { title: 'First assgnment', description: standard_description, learning_unit: LearningUnit.first, max_grade: 40 },
   { title: 'Need Submissions', description: standard_description, learning_unit: LearningUnit.first },
   { title: 'Readme', description: standard_description, learning_unit: LearningUnit.first },
   { title: 'File upload', description: standard_description, learning_unit: LearningUnit.second },

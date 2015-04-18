@@ -69,10 +69,10 @@ ActiveRecord::Schema.define(version: 20150417102446) do
     t.integer  "files_id"
     t.integer  "author_id"
     t.integer  "activity_id"
-    t.string   "comment"
-    t.integer  "grade"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "comment",                 null: false
+    t.integer  "grade",       default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "submissions", ["activity_id"], name: "index_submissions_on_activity_id"
