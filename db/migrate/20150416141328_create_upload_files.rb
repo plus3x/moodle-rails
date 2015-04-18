@@ -4,7 +4,7 @@ class CreateUploadFiles < ActiveRecord::Migration
       t.belongs_to :author, index: true, foreign_key: true
       t.belongs_to :activity, index: true, foreign_key: true
       t.belongs_to :submission, index: true, foreign_key: true
-      t.string :file
+      t.string :file, index: true, null: false
 
       t.timestamps null: false
     end

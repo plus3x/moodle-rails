@@ -1,0 +1,11 @@
+= simple_form_for @submission do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :files, collection: @submission.files, as: :check_boxes, label_method: :file_name_with_created_at
+    = f.association :author, as: :hidden
+    = f.association :activity, as: :hidden
+    = f.input :comment
+
+  .form-actions
+    = f.button :submit

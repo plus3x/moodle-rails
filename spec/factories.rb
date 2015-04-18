@@ -29,4 +29,11 @@ FactoryGirl.define do
     description
     learning_unit
   end
+
+  factory :upload_file do
+    file { |n| "path/to/file.#{n}" }
+    association :author, factory: :user
+  end
+
+  factory :submission
 end

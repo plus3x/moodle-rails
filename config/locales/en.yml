@@ -20,8 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  time:
+    formats:
+      default: "%Y.%m.%d %H:%M"
+      date: "%Y.%m.%d"
   login: Login
   password: Password
+  upload_file: Upload File
   layouts:
     application:
       default_page_title: Moodle-Rails

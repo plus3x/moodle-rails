@@ -39,15 +39,16 @@ module Abilitable
     end
 
     class Guest < Base
-      can sessions: %i(new create)
+      can sessions: :all
     end
 
     class Student < Guest
-      can sessions: :all
       can dashboard: %i(index)
       can courses: %i(index show)
       can learning_units: %i(index show)
-      can activities: :all
+      can activities: %i(index show)
+      can upload_files: :all
+      can submissions: :all
     end
 
     class Teacher < Student

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def authorize
-    return if current_user.can?(params[:action], params[:controller])
-    redirect_to root_url, notice: 'You no have permissions to do this.'
+    return if current_user.can?(params[:controller], params[:action])
+    redirect_to login_url, notice: 'You no have permissions to do this.'
   end
 end

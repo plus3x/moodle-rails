@@ -12,6 +12,8 @@ class ActivitiesController < ApplicationController
   # GET /courses/1/learning_units/1/activities/1
   # GET /courses/1/learning_units/1/activities/1.json
   def show
+    @uploaded_files = @activity.uploaded_files.where(author: current_user)
+    @submissions = @activity.submissions.where(author: current_user)
   end
 
   # GET /courses/1/learning_units/1/activities/new

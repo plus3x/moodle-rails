@@ -78,7 +78,7 @@ activities = [
   { title: 'Participant', description: standard_description, learning_unit: LearningUnit.second },
   { title: 'With Discussion', description: standard_description, learning_unit: LearningUnit.third },
   { title: 'QUIZ Assignment', description: standard_description, learning_unit: LearningUnit.third },
-  { title: 'Some task', description: standard_description, learning_unit: LearningUnit.third },
+  { title: 'Some task', description: standard_description, learning_unit: LearningUnit.third }
 ]
 puts 'Default activities:'
 Activity.create!(activities).each do |activity|

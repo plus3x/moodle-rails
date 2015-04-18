@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   end
 
   resources :users
+  resources :upload_files
+  resources :submissions
 
   resources :courses do
     resources :learning_units do

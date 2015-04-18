@@ -3,5 +3,40 @@
 
 %p=raw @activity.description
 
+%br
+
+- if current_user.student?
+  - if @submissions.any?
+    %ul.list-group{ style: 'width: 400px' }
+      %li.list-group-item
+        %strong Submissions
+      - @submissions.each do |submission|
+        %li.list-group-item
+          %ul.list-group
+            - submission.files.each do |file|
+              %li.list-group-item= file.file_name
+          %span
+            %strong Comment:
+            = submission.comment
+          %br
+          %span
+            %strong Date:
+            = l submission.created_at, format: :date
+
+  %ul.list-group{ style: 'width: 400px' }
+    %li.list-group-item
+      %strong Uploaded files
+    - if @uploaded_files.any?
+      - @uploaded_files.each do |uploaded_file|
+        %li.list-group-item
+          = uploaded_file.file_name_with_created_at_and_submitting_status
+    - else
+      %li.list-group-item Waiting files
+    %li.list-group-item.btn.btn-default
+      = link_to t('upload_file'), new_upload_file_path(activity_id: @activity.id)
+    - if @uploaded_files.not_submitted.any?
+      %li.list-group-item.btn.btn-default
+        = link_to 'Submit files', new_submission_path(activity_id: @activity.id)
+
 - if current_user.can?(:activities, :edit)
-  = link_to 'Edit', [:edit, @activity.learning_unit.course, @activity.learning_unit, @activity]
+  = link_to 'Edit', [:edit, @course, @learning_unit, @activity], class: 'btn btn-default'

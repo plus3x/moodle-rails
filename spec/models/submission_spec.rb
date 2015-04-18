@@ -1,0 +1,2 @@
+describe Submission do
+end

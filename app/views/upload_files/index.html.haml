@@ -1,0 +1,21 @@
+%h1 Listing upload_files
+
+%table
+  %thead
+    %tr
+      %th File
+      %th
+      %th
+      %th
+
+  %tbody
+    - @upload_files.each do |upload_file|
+      %tr
+        %td= upload_file.file
+        %td= link_to 'Show', upload_file
+        %td= link_to 'Edit', edit_upload_file_path(upload_file)
+        %td= link_to 'Destroy', upload_file, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Upload file', new_upload_file_path

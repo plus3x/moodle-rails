@@ -83,13 +83,14 @@ ActiveRecord::Schema.define(version: 20150417102446) do
     t.integer  "author_id"
     t.integer  "activity_id"
     t.integer  "submission_id"
-    t.string   "file"
+    t.string   "file",          null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   add_index "upload_files", ["activity_id"], name: "index_upload_files_on_activity_id"
   add_index "upload_files", ["author_id"], name: "index_upload_files_on_author_id"
+  add_index "upload_files", ["file"], name: "index_upload_files_on_file"
   add_index "upload_files", ["submission_id"], name: "index_upload_files_on_submission_id"
 
   create_table "users", force: :cascade do |t|

@@ -1,0 +1,11 @@
+= simple_form_for @upload_file do |f|
+  = f.error_notification
+
+  = f.input :activity_id, as: :hidden, input_html: { value: @activity.id }
+  = f.input :author_id, as: :hidden, input_html: { value: current_user.id }
+
+  .form-inputs
+    = f.input :file
+
+  .form-actions
+    = f.button :submit
