@@ -52,7 +52,7 @@ module Abilitable
     end
 
     class Teacher < Student
-      can courses: %i(edit update)
+      can courses: %i(index show edit update)
       can learning_units: :all
       can activities: :all
     end

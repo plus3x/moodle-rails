@@ -1,5 +1,13 @@
-.page-header
-  %h2= @activity.title
+.page-header.raw
+  .col-lg-10
+    %h2= @activity.title
+  .col-lg-2
+    %h2.text-success
+      - if current_user.student?
+        - grade = @submissions.any? ? @submissions.last.grade.to_i : 0
+        = "#{grade} / #{@activity.max_grade}"
+      - else
+        = "#{@activity.graded_students} / #{@course.students.count}"
 
 %p=raw @activity.description
 
@@ -37,6 +45,45 @@
     - if @uploaded_files.not_submitted.any?
       %li.list-group-item.btn.btn-default
         = link_to 'Submit files', new_submission_path(activity_id: @activity.id)
+
+- if current_user.teacher?
+
+  - @course.students.each do |student|
+    .panel.panel-default{ style: 'width: 500px' }
+      .panel-heading= student.full_name
+      .panel-body
+        - submissions = @activity.submissions.where(author: student)
+        - if submissions.any?
+          %ul.list-group
+            - submissions.each do |submission|
+              %li.list-group-item
+                %span
+                  %strong Comment:
+                  = submission.comment
+                %br
+                %span
+                  %strong Date:
+                  = l submission.created_at, format: :date
+                %br
+                %strong Files:
+                %ul
+                  - submission.files.each do |file|
+                    %li
+                      = link_to file.file_name, file.file.url
+              %li.list-group-item
+                = simple_form_for submission do |f|
+                  = f.association :files, as: :hidden
+                  = f.association :author, as: :hidden
+                  = f.association :activity, as: :hidden
+
+                  .input-group
+                    = f.input :grade, label: false, input_html: { value: submission.grade }
+                    %span.input-group-btn
+                      = f.button :submit, 'Grade'
+        - else
+          %h5 No submissions
+
+
 
 - if current_user.can?(:activities, :edit)
   = link_to 'Edit', [:edit, @course, @learning_unit, @activity], class: 'btn btn-default'

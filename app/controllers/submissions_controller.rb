@@ -1,6 +1,6 @@
 class SubmissionsController < ApplicationController
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
-  before_action :set_activity, only: %i(new create)
+  before_action :set_activity, only: %i(new create update)
 
   # GET /submissions
   # GET /submissions.json
@@ -50,7 +50,9 @@ class SubmissionsController < ApplicationController
   def update
     respond_to do |format|
       if @submission.update(submission_params)
-        format.html { redirect_to @submission, notice: 'Submission was successfully updated.' }
+        format.html do
+          redirect_to [@activity.learning_unit.course, @activity.learning_unit, @activity], notice: 'Submission was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @submission }
       else
         format.html { render :edit }
@@ -80,6 +82,6 @@ class SubmissionsController < ApplicationController
   end
 
   def submission_params
-    params.require(:submission).permit(:comment, :author_id, :activity_id, file_ids: [])
+    params.require(:submission).permit(:comment, :author_id, :activity_id, :grade, file_ids: [])
   end
 end

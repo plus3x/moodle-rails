@@ -1,5 +1,5 @@
 CarrierWave.configure do |config|
-  config.root = Rails.root.join('tmp')
+  config.root = Rails.root.join('public')
   config.permissions = 0666
   config.cache_dir = 'uploads'
   config.store_dir = 'uploads'

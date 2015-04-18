@@ -10,7 +10,7 @@ class UploadFile < ActiveRecord::Base
   validates :file, :author_id, presence: true
 
   def file_name
-    file.path[/\/(\w+\.\w+)$/, 1]
+    file.file.filename
   end
 
   def file_name_with_created_at

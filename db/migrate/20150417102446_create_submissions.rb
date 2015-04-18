@@ -4,8 +4,8 @@ class CreateSubmissions < ActiveRecord::Migration
       t.belongs_to :files, index: true, foreign_key: true
       t.belongs_to :author, index: true, foreign_key: true
       t.belongs_to :activity, index: true, foreign_key: true
-      t.string :comment
-      t.integer :grade
+      t.string :comment, null: false
+      t.integer :grade, default: 0
 
       t.timestamps null: false
     end

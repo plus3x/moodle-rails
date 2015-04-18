@@ -6,4 +6,8 @@ class Activity < ActiveRecord::Base
   has_many :submissions
 
   validates :title, presence: true
+
+  def graded_students
+    submissions.where("grade > 0").count
+  end
 end
