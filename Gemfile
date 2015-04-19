@@ -46,5 +46,5 @@ group :production do
   gem 'pg'
   gem 'unicorn'
   gem 'carrierwave'
-  gem 'fog', '1.23.0'
+  gem 'fog'
 end
