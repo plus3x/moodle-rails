@@ -1,9 +1,11 @@
 describe SubmissionsController do
   let(:student) { create :student }
-  let(:submission) { create :submission }
-  let(:valid_attributes) { { file: 'file/path', atuhor_id: student.id } }
-  let(:invalid_attributes) { { file: '' } }
   let(:activity) { create :activity }
+  let(:submission) { create :submission, activity: activity }
+  let(:valid_attributes) do
+    { file: 'file/path', atuhor_id: student.id, activity_id: activity.id, comment: 'Implementation' }
+  end
+  let(:invalid_attributes) { { file: '', activity_id: activity.id } }
   before { login_as student }
 
   describe 'GET index' do
@@ -54,7 +56,7 @@ describe SubmissionsController do
 
       it 'redirects to the created submission' do
         post :create, submission: valid_attributes
-        expect(response).to redirect_to(Submission.last)
+        expect(response).to redirect_to [activity.learning_unit.course, activity.learning_unit, activity]
         expect(flash[:notice]).to eq 'Submission was successfully created.'
       end
     end
@@ -74,12 +76,12 @@ describe SubmissionsController do
 
   describe 'PUT update' do
     describe 'with valid params' do
-      let(:new_attributes) { { file: 'new/file/path' } }
+      let(:new_attributes) { { comment: 'new comment', activity_id: activity.id } }
 
       it 'updates the requested submission' do
         expect do
           put :update, id: submission, submission: new_attributes
-        end.to change { submission.reload.file }.to new_attributes[:file]
+        end.to change { submission.reload.comment }.to new_attributes[:comment]
       end
 
       it 'assigns the requested submission as @submission' do
@@ -89,7 +91,7 @@ describe SubmissionsController do
 
       it 'redirects to the submission' do
         put :update, id: submission, submission: valid_attributes
-        expect(response).to redirect_to(submission)
+        expect(response).to redirect_to [activity.learning_unit.course, activity.learning_unit, activity]
       end
     end
 
@@ -101,7 +103,7 @@ describe SubmissionsController do
 
       it "re-renders the 'edit' template" do
         put :update, id: submission, submission: invalid_attributes
-        expect(response).to render_template :edit
+        expect(response).to redirect_to [activity.learning_unit.course, activity.learning_unit, activity]
       end
     end
   end

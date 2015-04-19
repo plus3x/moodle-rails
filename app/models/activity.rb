@@ -8,6 +8,6 @@ class Activity < ActiveRecord::Base
   validates :title, presence: true
 
   def graded_students
-    submissions.where("grade > 0").count
+    submissions.where('grade > 0').count
   end
 end

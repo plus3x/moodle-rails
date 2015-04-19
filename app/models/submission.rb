@@ -9,8 +9,7 @@ class Submission < ActiveRecord::Base
   private
 
   def grade_validation
-    unless grade == 0 || grade <= activity.max_grade
-      errors.add :grade, 'Grade must be lesser then activity max grade'
-    end
+    return if grade == 0 || grade <= activity.max_grade
+    errors.add :grade, 'Grade must be lesser then activity max grade'
   end
 end

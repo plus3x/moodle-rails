@@ -1,5 +1,5 @@
 class SubmissionsController < ApplicationController
-  before_action :set_submission, only: [:show, :edit, :update, :destroy]
+  before_action :set_submission, only: %i(show edit update destroy)
   before_action :set_activity, only: %i(new create update)
 
   # GET /submissions
@@ -35,7 +35,8 @@ class SubmissionsController < ApplicationController
     respond_to do |format|
       if @submission.save
         format.html do
-          redirect_to [@activity.learning_unit.course, @activity.learning_unit, @activity], notice: 'Submission was successfully created.'
+          redirect_to [@activity.learning_unit.course, @activity.learning_unit, @activity],
+                      notice: 'Submission was successfully created.'
         end
         format.json { render :show, status: :created, location: @submission }
       else
@@ -51,7 +52,8 @@ class SubmissionsController < ApplicationController
     respond_to do |format|
       if @submission.update(submission_params)
         format.html do
-          redirect_to [@activity.learning_unit.course, @activity.learning_unit, @activity], notice: 'Submission was successfully updated.'
+          redirect_to [@activity.learning_unit.course, @activity.learning_unit, @activity],
+                      notice: 'Submission was successfully updated.'
         end
         format.json { render :show, status: :ok, location: @submission }
       else

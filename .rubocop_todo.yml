@@ -5,10 +5,17 @@ Metrics/LineLength:
   Exclude:
     - db/seeds.rb
 
+Metrics/MethodLength:
+  Max: 13
+
+Metrics/AbcSize:
+  Max: 17
+
 Style/MethodCalledOnDoEndBlock:
   Enabled: true
   Exclude:
     - spec/**/*
+    - features/step_definitions/**/*
 
 Rails/HasAndBelongsToMany:
   Enabled: false

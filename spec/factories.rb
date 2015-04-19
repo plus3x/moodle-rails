@@ -1,7 +1,7 @@
 FactoryGirl.define do
-  sequence(:login, aliases: [:username]) { |n| "John##{n}" }
+  sequence(:login, aliases: %i(username)) { |n| "John##{n}" }
   sequence(:email) { |n| "john#{n}@mail.com" }
-  sequence(:description) { ('A'..'z').to_a.*(10).sample(255).join }
+  sequence(:description, aliases: %i(comment)) { ('A'..'z').to_a.*(10).sample(255).join }
 
   factory :user do
     login
@@ -31,9 +31,14 @@ FactoryGirl.define do
   end
 
   factory :upload_file do
-    file { |n| "path/to/file.#{n}" }
+    file { open 'spec/fixtures/calculations.txt' }
+    activity
     association :author, factory: :user
   end
 
-  factory :submission
+  factory :submission do
+    comment
+    activity
+    association :author, factory: :user
+  end
 end

@@ -30,7 +30,8 @@ class UploadFilesController < ApplicationController
     respond_to do |format|
       if @upload_file.save
         format.html do
-          redirect_to [@activity.learning_unit.course, @activity.learning_unit, @activity], notice: 'Upload file was successfully created.'
+          redirect_to [@activity.learning_unit.course, @activity.learning_unit, @activity],
+                      notice: 'Upload file was successfully created.'
         end
         format.json { render :show, status: :created, location: @upload_file }
       else

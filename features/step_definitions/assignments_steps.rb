@@ -34,7 +34,7 @@ Given 'I\'m on activity "$activity_title"' do |activity_title|
   )
 end
 
-When 'I upload file "$file_name"' do |file_name|
+When 'I upload file "$file_name"' do |_file_name|
   click_on 'Upload File'
 
   expect(current_path).to eq new_upload_file_path

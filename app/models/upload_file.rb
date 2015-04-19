@@ -19,7 +19,7 @@ class UploadFile < ActiveRecord::Base
 
   def file_name_with_created_at_and_submitting_status
     result = file_name_with_created_at
-    result << " - submitted" if submission_id
+    result << ' - submitted' if submission_id
     result
   end
 end
