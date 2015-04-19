@@ -11,10 +11,15 @@ gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'simple_form'
 gem 'bootsy'
+gem 'jquery-rails'
+gem 'turbolinks'
 
 group :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'capybara'
+  gem 'cucumber-rails', require: false
+  gem 'selenium-webdriver', require: false
 end
 
 group :development, :test do
@@ -26,6 +31,7 @@ end
 group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'spring-commands-cucumber'
   gem 'simplecov', require: false
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
@@ -33,8 +39,6 @@ end
 
 group :production, :development do
   gem 'uglifier', '>= 1.3.0'
-  gem 'turbolinks'
-  gem 'jquery-rails'
 end
 
 group :production do
