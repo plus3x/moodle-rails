@@ -1,9 +1,14 @@
-# require 'capybara/cucumber'
-# require 'capybara/rspec'
+require 'capybara/cucumber'
+require 'capybara/rspec'
 
-# Capybara.register_driver :selenium do |app|
-#   Capybara::Selenium::Driver.new(app, browser: :safari)
-# end
+if ENV['SELENIUM_DRIVER']
+  browser = (ENV['BROWSER'] || :safari).to_sym
 
-# Capybara.default_driver = :selenium
+  Capybara.register_driver :selenium do |app|
+    Capybara::Selenium::Driver.new(app, browser: browser)
+  end
+
+  Capybara.default_driver = :selenium
+end
+
 # Capybara.javascript_driver = :webkit

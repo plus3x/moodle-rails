@@ -1,5 +1,5 @@
 Given 'a user:' do |table|
-  User.create! table.rows_hash
+  create :user, table.rows_hash
 end
 
 Given 'I visit Login page' do
@@ -11,7 +11,7 @@ When 'I fill $field with "$value"' do |field, value|
 end
 
 When 'I press $button' do |button|
-  click_on button
+  click_button button
 end
 
 Then 'I redirected to "$path"' do |path|
@@ -20,4 +20,13 @@ end
 
 Then 'I see $notification: "$message"' do |notification, message|
   expect(page).to have_selector "div.alert-#{notification}", text: message
+end
+
+Given 'I\'m logged in as a Student' do
+  student = User.student.first || create(:student)
+
+  visit login_path
+  fill_in :login, with: student.login
+  fill_in :password, with: 'secret'
+  click_button 'Login'
 end
