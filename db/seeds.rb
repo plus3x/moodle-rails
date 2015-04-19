@@ -85,4 +85,13 @@ Activity.create!(activities).each do |activity|
   puts "  #{activity.id} - #{activity.title} on learning unit \"#{activity.learning_unit.title}\""
 end
 
+Discussion.delete_all
+discussions = [
+  { title: 'Many questions', question: '<ul><li>First?</li><li>Second?</li></ul>', author_id: User.teacher.first.id, course: Course.first }
+]
+puts 'Default discussions:'
+Discussion.create!(discussions).each do |discussion|
+  puts "  #{discussion.id} - #{discussion.title} on course \"#{discussion.course.title}\""
+end
+
 User.all.each { |u| u.courses << Course.all }

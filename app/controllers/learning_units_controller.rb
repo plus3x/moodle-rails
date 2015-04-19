@@ -73,6 +73,6 @@ class LearningUnitsController < ApplicationController
   end
 
   def learning_unit_params
-    params.require(:learning_unit).permit(:title).merge course_id: params[:course_id]
+    params.require(:learning_unit).permit(:title, :course_id).merge course_id: params[:course_id]
   end
 end

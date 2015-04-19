@@ -1,0 +1,6 @@
+.page-header
+  %h2= @discussion.title
+  - if current_user.can?(:discussions, :edit)
+    = link_to t('edit'), [:edit, @course, @discussion]
+
+%p=raw @discussion.question

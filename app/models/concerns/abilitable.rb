@@ -49,6 +49,7 @@ module Abilitable
       can activities: %i(index show)
       can upload_files: :all
       can submissions: :all
+      can discussions: :all
     end
 
     class Teacher < Student

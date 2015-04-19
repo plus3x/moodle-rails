@@ -1,0 +1,10 @@
+= simple_form_for @discussion do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :title
+    = f.input :question, as: :bootsy
+    = f.association :course, as: :hidden
+
+  .form-actions
+    = f.button :submit

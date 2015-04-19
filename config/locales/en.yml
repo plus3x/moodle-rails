@@ -27,6 +27,8 @@ en:
   login: Login
   password: Password
   upload_file: Upload File
+  new_discussion: New Discussion
+  edit: Edit
   layouts:
     application:
       default_page_title: Moodle-Rails

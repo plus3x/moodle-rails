@@ -1,0 +1,2 @@
+describe Discussion do
+end

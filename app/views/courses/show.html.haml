@@ -1,18 +1,30 @@
 .page-header
   %h2= @course.title
+  - if current_user.can?(:courses, :edit)
+    = link_to 'Edit', edit_course_path(@course)
 
-.panel.panel-default
+.raw
+  .col-lg-8
+    .panel.panel-default
 
-  - @course.learning_units.each do |learning_unit|
+      - @course.learning_units.each do |learning_unit|
 
-    .panel-heading
-      .panel-title= learning_unit.title
+        .panel-heading
+          .panel-title= learning_unit.title
 
-    .panel-body
-      %ul.list-group
-        - learning_unit.activities.each do |activity|
-          %li.list-group-item= link_to activity.title, [@course, learning_unit, activity]
+        %ul.panel-body.list-group
+          - learning_unit.activities.each do |activity|
+            %li.list-group-item= link_to activity.title, [@course, learning_unit, activity]
 
+  .col-lg-4
+    .panel.panel-default
 
-- if current_user.can?(:courses, :edit)
-  = link_to 'Edit', edit_course_path(@course)
+      .panel-heading
+        .panel-title Discussions
+
+      %ul.panel-body.list-group
+        - @course.discussions.each do |discussion|
+          %li.list-group-item= link_to discussion.title, [@course, discussion]
+
+      .panel-footer
+        = link_to t('new_discussion'), new_course_discussion_path(@course)
