@@ -4,3 +4,47 @@
     = link_to t('edit'), [:edit, @course, @discussion]
 
 %p=raw @discussion.question
+
+
+.panel.panel-default
+  .panel-heading
+    .panel-title Comments
+
+  .panel-body
+    %ul.list-unstyled
+      - @discussion.comments.parents_off.each do |comment|
+        %li
+          .raw
+            .col-lg-1
+              = image_tag comment.author.avatar_url, alt: "#{comment.author.login}(#{comment.author.role})", class: 'img-circle', style: 'width: 40px; height: 40px; margin-top: 10px'
+            .col-lg-11
+              = comment.text
+              %br
+              %span
+                %strong Author:
+                = comment.author.full_name
+              %br
+              %span
+                %strong Date:
+                = l comment.created_at
+          - if comment.childs.any?
+            %ul.list-unstyled
+              - comment.childs.each do |comment|
+                %li
+                  .raw
+                    .col-lg-1
+                    .col-lg-1
+                      = image_tag comment.author.avatar_url, alt: "#{comment.author.login}(#{comment.author.role})", class: 'img-circle', style: 'width: 40px; height: 40px; margin-top: 10px'
+                    .col-lg-10
+                      = comment.text
+                      %br
+                      %span
+                        %strong Author:
+                        = comment.author.full_name
+                      %br
+                      %span
+                        %strong Date:
+                        = l comment.created_at
+
+  .panel-footer
+    = link_to 'New comment', new_course_discussion_comment_path(@course, @discussion)

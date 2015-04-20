@@ -94,4 +94,15 @@ Discussion.create!(discussions).each do |discussion|
   puts "  #{discussion.id} - #{discussion.title} on course \"#{discussion.course.title}\""
 end
 
+Comment.delete_all
+comments = [
+  { text: 'I not understend question(', author_id: User.student.first.id, discussion_id: Discussion.first.id },
+  { text: 'Reread!', author_id: User.teacher.first.id, parent_id: 1, discussion_id: Discussion.first.id }
+]
+puts 'Default comments:'
+Comment.create!(comments).each do |comment|
+  puts format "%3d - #{comment.text} on discussion \"#{comment.discussion.title}\"", comment.id
+  puts "      child of comment #{Comment.find(comment.parent_id).id}" if comment.parent_id
+end
+
 User.all.each { |u| u.courses << Course.all }

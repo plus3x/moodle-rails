@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   resources :submissions
 
   resources :courses do
-    resources :discussions
+    resources :discussions do
+      resources :comments
+    end
     resources :learning_units do
       resources :activities
     end

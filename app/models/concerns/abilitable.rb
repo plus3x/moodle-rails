@@ -50,6 +50,7 @@ module Abilitable
       can upload_files: :all
       can submissions: :all
       can discussions: :all
+      can comments: :all
     end
 
     class Teacher < Student

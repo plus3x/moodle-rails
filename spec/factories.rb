@@ -1,7 +1,7 @@
 FactoryGirl.define do
   sequence(:login, aliases: %i(username)) { |n| "John##{n}" }
   sequence(:email) { |n| "john#{n}@mail.com" }
-  sequence(:description, aliases: %i(comment question)) { ('A'..'z').to_a.*(10).sample(255).join }
+  sequence(:description, aliases: %i(question text)) { ('A'..'z').to_a.*(10).sample(255).join }
 
   factory :user do
     login
@@ -37,7 +37,7 @@ FactoryGirl.define do
   end
 
   factory :submission do
-    comment
+    comment { ('A'..'z').to_a.*(10).sample(255).join }
     activity
     association :author, factory: :user
   end
@@ -46,6 +46,12 @@ FactoryGirl.define do
     title { |n| "Discussion##{n}" }
     question
     course
+    association :author, factory: :user
+  end
+
+  factory :comment do
+    text
+    discussion
     association :author, factory: :user
   end
 end

@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Dicussion:
+  = @comment.dicussion
+%p
+  %b Parent:
+  = @comment.parent
+%p
+  %b Author:
+  = @comment.author
+%p
+  %b Text:
+  = @comment.text
+
+= link_to 'Edit', edit_comment_path(@comment)
+\|
+= link_to 'Back', comments_path
